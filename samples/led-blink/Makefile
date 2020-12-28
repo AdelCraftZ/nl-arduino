@@ -11,12 +11,10 @@ OUTDIR = build
 INCFLAGS = $(patsubst %,-I%,$(INCDIR))
 OBJDIR = $(OUTDIR)/obj
 
-COMPILE_FLAGS = $(INCFLAGS) -mmcu=$(DEVICE) -Wall -DF_CPU=$(CLOCK)
+COMPILE_FLAGS = $(INCFLAGS) -mmcu=$(DEVICE) -Os -Wall -DF_CPU=$(CLOCK)
 MODE = DEBUG
 ifeq ($(MODE),DEBUG)
-	COMPILE_FLAGS += -O0 -g
-else
-	COMPILE_FLAGS += -Os
+	COMPILE_FLAGS += -g
 endif
 
 CC = avr-gcc
